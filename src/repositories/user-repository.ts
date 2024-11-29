@@ -1,4 +1,4 @@
-import { CreateUserDto,LoginUserDto,UpdateUserDto,UserResponseDto } from "../dtos/user-dto";
+import { CreateUserDto,UpdateUserDto,UserResponseDto } from "../dtos/user-dto";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -53,5 +53,47 @@ export class UserRepository {
         return user;
     }
 
+    async delete(userId:string) {
+      const user =  await prisma.user.delete({
+            where: {
+                id: userId,
+            }
+        });
 
+        return user;
+    }
+
+    async update(userId:string,data:UpdateUserDto) : Promise<UserResponseDto> {
+        const user = await prisma.user.update({
+            where: {
+                id: userId,
+            },
+            data: {
+                name: data.name,
+                email: data.email,
+                password: data.password,
+                banner: data.banner,
+                phoneNumber: data.phoneNumber,
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                banner: true,
+                phoneNumber: true,
+            }
+        });
+
+        return user;
+    }
+
+    async findById(userId:string){
+       const user = await prisma.user.findFirst({
+        where:{
+            id:userId
+        }
+       })
+
+       return user;
+    }
 }

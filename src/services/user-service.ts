@@ -45,4 +45,18 @@ export class UserService {
 
         return {token};
     }
+
+    async delete(userId:string){
+         return await this.userRepository.delete(userId)
+    }
+
+    async update(userId:string,data:UpdateUserDto):Promise<UserResponseDto>{
+       const user = await this.userRepository.findById(userId)
+       if(!user){
+        throw new UserNotFoundError("User not found");
+       }
+
+       return await this.userRepository.update(userId,data);
+
+    }
 }
