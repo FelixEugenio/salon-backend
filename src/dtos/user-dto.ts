@@ -26,3 +26,7 @@ export interface UserResponseDto {
     banner?: string;
     phoneNumber: string;
 }
+
+export interface PayloadDto {
+    sub: string;
+}
