@@ -11,11 +11,4 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const mailOptions: nodemailer.SendMailOptions = {
-  from: 'EquipeBarber@gmail.com',
-  to: 'felixmacarenco@gmail.com',
-  subject: 'Novo Cancelamento',
-  text: 'Novo Cancelamento de Agendamento',
-};
-
-export {transporter,mailOptions}
+export {transporter}

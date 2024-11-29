@@ -1,16 +1,21 @@
 import { Request,Response } from "express";
 import { UserService } from '../services/user-service';
 import { CreateUserDto, LoginUserDto, UpdateUserDto } from "../dtos/user-dto";
+import { sendWelcomeEmail } from "../utils/email/send-welcome-email";
 
 const userService = new UserService();
 export class UserController{
     
     async register(req:Request,res:Response){
-        
+        try{
         const userData:CreateUserDto = req.body;
         const user = await userService.create(userData);
+        await sendWelcomeEmail(user.email,user.name);
 
         return res.status(201).json(user);
+        }catch(err){
+            console.log(err);
+        }
     }
 
     async profile(req:Request,res:Response){
