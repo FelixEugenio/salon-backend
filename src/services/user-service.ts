@@ -2,6 +2,7 @@ import { UserRepository } from "../repositories/user-repository";
 import { CreateUserDto,LoginUserDto,UpdateUserDto,UserResponseDto } from "../dtos/user-dto";
 import bcrypt from 'bcryptjs';
 import generateToken from "../utils/auth/generate-token";
+import { ConflictError, InvalidPasswordError, UserNotFoundError } from "../utils/error/error-types";
 
 export class UserService {
     private userRepository : UserRepository;
@@ -16,7 +17,7 @@ export class UserService {
         const verifyIfUserExists = await this.userRepository.findByEmail(data.email);
 
         if (verifyIfUserExists) {
-            throw new Error("User already exists");
+            throw new ConflictError("User already exists");
         }
 
         const passwordHash = await bcrypt.hash(data.password, 8);
@@ -32,12 +33,12 @@ export class UserService {
     async login(data:LoginUserDto){
         const user = await this.userRepository.findByEmail(data.email);
         if(!user){
-            throw new Error("User not found");
+            throw new UserNotFoundError("User not found");
         }
 
         const isValidPassword = await bcrypt.compare(data.password, user.password);
         if(!isValidPassword){
-            throw new Error("Invalid password");
+            throw new InvalidPasswordError("Invalid password");
         }
 
         const token = await generateToken(user.id);

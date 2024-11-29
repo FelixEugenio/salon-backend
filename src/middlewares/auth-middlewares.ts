@@ -16,5 +16,4 @@ export async function authMiddleware(req:Request,res:Response,next:NextFunction)
     }catch(err){
         return res.status(401).json({message:"Invalid token"});
     }
-
 }
