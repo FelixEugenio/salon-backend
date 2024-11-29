@@ -12,6 +12,7 @@ CREATE TABLE "users" (
     "password" TEXT NOT NULL,
     "banner" TEXT,
     "role" "Role" NOT NULL DEFAULT 'USER',
+    "blocked" BOOLEAN NOT NULL DEFAULT false,
     "phoneNumber" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "update_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,

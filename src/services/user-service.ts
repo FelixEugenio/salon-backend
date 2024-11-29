@@ -12,7 +12,7 @@ export class UserService {
 
     //service para criar usuário
     async create(data: CreateUserDto): Promise<UserResponseDto> {
-        
+
         //verificando se usuário já existe
         const verifyIfUserExists = await this.userRepository.findByEmail(data.email);
 
@@ -59,4 +59,22 @@ export class UserService {
        return await this.userRepository.update(userId,data);
 
     }
+
+    async blockedUser(userId:string):Promise<UserResponseDto>{
+        const user = await this.userRepository.findById(userId)
+        if(!user){
+            throw new UserNotFoundError("User not found");
+        }
+
+        return await this.userRepository.blockUser(userId);
+        }
+
+        async unBlockedUser(userId:string):Promise<UserResponseDto>{
+            const user = await this.userRepository.findById(userId)
+            if(!user){
+                throw new UserNotFoundError("User not found");
+            }
+
+            return await this.userRepository.unBlockedUser(userId);
+            }
 }

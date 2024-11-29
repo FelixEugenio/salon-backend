@@ -96,4 +96,44 @@ export class UserRepository {
 
        return user;
     }
+
+    async blockUser(userId:string) : Promise<UserResponseDto> {
+        const user = await prisma.user.update({
+            where: {
+                id: userId,
+            },
+            data: {
+                blocked: true,
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                banner: true,
+                phoneNumber: true,
+            }
+        });
+
+        return user;
+    }
+
+    async unBlockedUser(userId:string) : Promise<UserResponseDto> {
+        const user = await prisma.user.update({
+            where: {
+                id: userId,
+            },
+            data: {
+                blocked: false,
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                banner: true,
+                phoneNumber: true,
+            }
+        });
+
+        return user;
+    }
 }

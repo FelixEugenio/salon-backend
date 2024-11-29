@@ -3,11 +3,11 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 const transporter = nodemailer.createTransport({
-  host:process.env.EMAIL_HOST, 
-  port:process.env.EMAIL_PORT, 
+  host:'sandbox.smtp.mailtrap.io',
+  port:2525,
   auth: {
-    user:process.env.EMAIL_USER, 
-    pass:process.env.EMAIL_PASS ,
+    user:'e9de350c8dea2f',
+    pass:'d3022fbd61e6e1' ,
   },
 });
 

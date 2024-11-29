@@ -9,14 +9,14 @@ export const WELCOME_EMAIL_TEMPLATE = (name: string) => `
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
-    <h1 style="color: white; margin: 0;">Bem-vindo ao Teamwork Salon!</h1>
+    <h1 style="color: white; margin: 0;">Bem-vindo ao Salon!</h1>
   </div>
   <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <p>Olá,${name}</p>
-    <p>Obrigado por se cadastrar no Teamwork Salon!</p>
+    <p>Obrigado por se cadastrar no Salon!</p>
     <p>Estamos muito felizes em tê-lo(a) como parte da nossa comunidade. Agora você pode começar a aproveitar todos os serviços incríveis que oferecemos.</p>
     <p>Se você tiver alguma dúvida ou precisar de ajuda, nossa equipe está sempre à disposição para ajudá-lo(a)!</p>
-    <p>Desejamos uma experiência maravilhosa em nosso site!</p>
+    <p>Desejamos uma experiência maravilhosa na nossa plataforma!</p>
     <p>Atenciosamente,<br>Equipe Salon</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
@@ -25,6 +25,93 @@ export const WELCOME_EMAIL_TEMPLATE = (name: string) => `
 </body>
 </html>
 `;
+
+export const APPOINTMENT_CONFIRMATION_EMAIL_TEMPLATE = (name: string, appointmentDate: string) => `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu agendamento foi confirmado, ${name}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
+    <h1 style="color: white; margin: 0;">Agendamento Confirmado</h1>
+  </div>
+  <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <p>Olá, ${name}</p>
+    <p>Obrigado por agendar seu compromisso conosco no Salon!</p>
+    <p>Seu agendamento foi confirmado com sucesso e está marcado para:</p>
+    <p><strong>${appointmentDate}</strong></p>
+    <p>Fique tranquilo(a), nossa equipe estará pronta para atendê-lo(a) no horário marcado.</p>
+    <p>Se precisar alterar ou cancelar o agendamento, entre em contato conosco com antecedência.</p>
+    <p>Estamos ansiosos para vê-lo(a) em breve!</p>
+    <p>Atenciosamente,<br>Equipe Salon</p>
+  </div>
+  <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
+    <p>Este é um e-mail automatizado. Por favor, não responda a este e-mail.</p>
+  </div>
+</body>
+</html>
+`;
+
+
+export const CANCEL_APPOINTMENT_EMAIL_TEMPLATE = (name: string, appointmentDate: string) => `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu agendamento foi cancelado, ${name}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: linear-gradient(to right, #F44336, #D32F2F); padding: 20px; text-align: center;">
+    <h1 style="color: white; margin: 0;">Agendamento Cancelado</h1>
+  </div>
+  <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <p>Olá, ${name}</p>
+    <p>Informamos que o seu agendamento foi cancelado com sucesso. O agendamento estava marcado para:</p>
+    <p><strong>${appointmentDate}</strong></p>
+    <p>Se o cancelamento foi feito por engano ou se você deseja reagendar, por favor, entre em contato conosco o mais rápido possível.</p>
+    <p>Se precisar de mais informações ou ajuda, nossa equipe está disponível para te atender.</p>
+    <p>Agradecemos pela sua compreensão e esperamos atendê-lo(a) em uma próxima oportunidade.</p>
+    <p>Atenciosamente,<br>Equipe Salon</p>
+  </div>
+  <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
+    <p>Este é um e-mail automatizado. Por favor, não responda a este e-mail.</p>
+  </div>
+</body>
+</html>
+`;
+
+
+export const BLOCK_USER_EMAIL_TEMPLATE = (name: string) => `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> conta bloqueada, ${name}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: linear-gradient(to right, #F44336, #D32F2F); padding: 20px; text-align: center;">
+    <h1 style="color: white; margin: 0;">Sua Conta foi Bloqueada</h1>
+  </div>
+  <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <p>Olá, ${name}</p>
+    <p>Sentimos muito em informar que sua conta foi cancelada com sucesso.</p>
+    <p>Se você não solicitou este bloqueio ou se deseja reverter a decisão, entre em contato com nossa equipe o mais rápido possível.</p>
+    <p>Se precisar de ajuda ou se tiver alguma dúvida, nossa equipe de suporte está à disposição.</p>
+    <p>Esperamos poder contar com você novamente no futuro.</p>
+    <p>Atenciosamente,<br>Equipe Salon</p>
+  </div>
+  <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
+    <p>Este é um e-mail automatizado. Por favor, não responda a este e-mail.</p>
+  </div>
+</body>
+</html>
+`;
+
 
 export const VERIFICATION_EMAIL_TEMPLATE = `
 <!DOCTYPE html>

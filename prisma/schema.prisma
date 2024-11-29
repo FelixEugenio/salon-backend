@@ -22,6 +22,7 @@ model User{
     password String
     banner String?
     role Role @default(USER)
+    blocked Boolean @default(false)
     phoneNumber String
     created_at DateTime? @default(now())
     update_at DateTime?  @default(now())
