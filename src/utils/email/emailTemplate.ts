@@ -112,6 +112,33 @@ export const BLOCK_USER_EMAIL_TEMPLATE = (name: string) => `
 </html>
 `;
 
+export const UNBLOCK_USER_EMAIL_TEMPLATE = (name: string) => `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conta Desbloqueada, ${name}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: linear-gradient(to right, #4CAF50, #388E3C); padding: 20px; text-align: center;">
+    <h1 style="color: white; margin: 0;">Sua Conta foi Desbloqueada!</h1>
+  </div>
+  <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <p>Olá, ${name}</p>
+    <p>Temos o prazer de informar que sua conta foi desbloqueada com sucesso!</p>
+    <p>Agora você pode acessar todos os serviços novamente. Estamos felizes em tê-lo(a) de volta à nossa plataforma.</p>
+    <p>Se precisar de ajuda ou tiver alguma dúvida, nossa equipe de suporte está à disposição para assisti-lo(a) a qualquer momento.</p>
+    <p>Obrigado por continuar com a gente! Desejamos uma experiência excelente em nossa plataforma.</p>
+    <p>Atenciosamente,<br>Equipe Salon</p>
+  </div>
+  <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
+    <p>Este é um e-mail automatizado. Por favor, não responda a este e-mail.</p>
+  </div>
+</body>
+</html>
+`;
+
 
 export const VERIFICATION_EMAIL_TEMPLATE = `
 <!DOCTYPE html>

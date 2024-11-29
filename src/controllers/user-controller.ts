@@ -3,6 +3,7 @@ import { UserService } from '../services/user-service';
 import { CreateUserDto, LoginUserDto, UpdateUserDto } from "../dtos/user-dto";
 import { sendWelcomeEmail } from "../utils/email/send-welcome-email";
 import { sendBlockedAccountEmail } from "../utils/email/send-blocked-account-email";
+import { sendUnBlockedAccountEmail } from "../utils/email/send-unblocked-account-email copy";
 
 const userService = new UserService();
 export class UserController{
@@ -52,6 +53,7 @@ export class UserController{
     async unBlockedUser(req:Request,res:Response){
         const userId = req.params.id;
         const user = await userService.unBlockedUser(userId);
+        await sendUnBlockedAccountEmail(user.email,user.name);
         return res.status(200).json(user);
     }
 }

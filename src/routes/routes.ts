@@ -12,5 +12,7 @@ router.post("/login",userController.login);
 router.get("/profile/:id",isAuthenticated,userController.profile);
 router.delete("/users/:id",isAuthenticated,userController.delete);
 router.put("/users/:id",isAuthenticated,userController.update);
+router.get("/users/blocked/:id",isAuthenticated,userController.blockedUser);
+router.get("/users/unblocked/:id",isAuthenticated,userController.unBlockedUser);
 
 export default router;
