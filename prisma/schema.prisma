@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//yarn prisma migrate dev
+
+model User{
+    id String @id @default(uuid())
+    name String
+    email String
+    password String
+    banner String?
+    role Role @default(USER)
+    phoneNumber String
+    created_at DateTime? @default(now())
+    update_at DateTime?  @default(now())
+
+    @@map("users")
+    
+    Professional Professional[]
+}
+
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model Appointment {
+    id String @id  @default(uuid())
+    scheduleAt DateTime
+    status AppointmentStatus
+    professionalId String
+    serviceId String
+    created_at DateTime? @default(now())
+    update_at DateTime?  @default(now())
+
+    professional Professional @relation(fields: [professionalId],references: [id])
+    service Service @relation(fields: [serviceId],references: [id])
+    @@map("appointments")
+
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELED
+  COMPLETED
+}
+
+model Service {
+  id String @id  @default(uuid())
+  name String
+  description String?
+  price Float
+  duration Int
+  created_at DateTime? @default(now())
+  update_at DateTime?  @default(now())
+
+  @@map("services")
+  Appointment Appointment[]
+}
+
+model Professional{
+    id String @id @default(uuid())
+    name String
+    userId String @unique
+    specialty String
+    available Boolean @default(true)
+    created_at DateTime? @default(now())
+    update_at DateTime?  @default(now())
+
+     user User @relation(fields: [userId],references: [id])
+    @@map("professionals")
+    Appointment Appointment[]
+    availability availability[]
+}
+
+model availability{
+  id String @id @default(uuid())
+  day String
+  professionalId String
+  startTime DateTime
+  endTime DateTime
+  created_at DateTime? @default(now())
+  update_at DateTime?  @default(now())
+
+professional Professional @relation(fields: [professionalId],references: [id])
+  @@map("availabilities")
+}
+
+
