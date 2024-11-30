@@ -7,6 +7,12 @@ export class UserNotFoundError extends AppError {
     }
 }
 
+export class ServiceNotFoundError extends AppError {
+    constructor(message: string = "User not found") {
+        super(message, 404);  // 404 é o código HTTP para "Não encontrado"
+    }
+}
+
 export class InvalidPasswordError extends AppError {
     constructor(message: string = "Invalid password") {
         super(message, 400);  // 400 é o código HTTP para "Bad Request"

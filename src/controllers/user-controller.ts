@@ -8,7 +8,6 @@ import { createUserSchema } from "../utils/validation/user-validation";
 
 const userService = new UserService();
 export class UserController{
-
     async register(req:Request,res:Response){
 
         const userData:ICreateUserDto = req.body;
