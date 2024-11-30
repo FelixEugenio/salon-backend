@@ -26,6 +26,7 @@
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^6.9.16",
     "prisma": "^6.0.0",
-    "salon": "file:"
+    "salon": "file:",
+    "zod": "^3.23.8"
   }
 }
