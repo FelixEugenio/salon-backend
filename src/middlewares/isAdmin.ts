@@ -1,8 +1,12 @@
 import { Request,Response,NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { IPayloadDto } from "../dtos/user-dto";
 import { verify } from "jsonwebtoken";
-export async function isAuthenticated(req:Request,res:Response,next:NextFunction){
+
+interface IPayloadDto{
+    sub: string
+    role: string
+}
+export async function isAdmin(req:Request,res:Response,next:NextFunction){
     const authHeader = req.headers.authorization;
     if(!authHeader){
         return res.status(401).json({message:"Token not found"});
@@ -10,8 +14,8 @@ export async function isAuthenticated(req:Request,res:Response,next:NextFunction
     const [ ,token] = authHeader.split(" ");
     try{
         const decoded = verify(token,process.env.JWT_SECRET) as IPayloadDto;
-
-        if(!decoded.sub){
+        
+        if(decoded.role !== "ADMIN"){
             return res.status(401).json({message:"Unauthorized"});
         }
 

@@ -1,5 +1,5 @@
 import { UserRepository } from "../repositories/user-repository";
-import { CreateUserDto,LoginUserDto,UpdateUserDto,UserResponseDto } from "../dtos/user-dto";
+import { ICreateUserDto,ILoginUserDto,IUpdateUserDto,IUserResponseDto } from "../dtos/user-dto";
 import bcrypt from 'bcryptjs';
 import generateToken from "../utils/auth/generate-token";
 import { ConflictError, InvalidPasswordError, UserNotFoundError } from "../utils/error/error-types";
@@ -11,7 +11,7 @@ export class UserService {
     }
 
     //service para criar usuário
-    async create(data: CreateUserDto): Promise<UserResponseDto> {
+    async create(data: ICreateUserDto): Promise<IUserResponseDto> {
 
         //verificando se usuário já existe
         const verifyIfUserExists = await this.userRepository.findByEmail(data.email);
@@ -26,11 +26,11 @@ export class UserService {
         return user;
     }
 
-    async profile(userId:string): Promise<UserResponseDto> {
+    async profile(userId:string): Promise<IUserResponseDto> {
         return await this.userRepository.profile(userId);
     }
 
-    async login(data:LoginUserDto){
+    async login(data:ILoginUserDto){
         const user = await this.userRepository.findByEmail(data.email);
         if(!user){
             throw new UserNotFoundError("User not found");
@@ -41,7 +41,7 @@ export class UserService {
             throw new InvalidPasswordError("Invalid password");
         }
 
-        const token = await generateToken(user.id);
+        const token = await generateToken(user.id,user.role);
 
         return {token};
     }
@@ -50,7 +50,7 @@ export class UserService {
          return await this.userRepository.delete(userId)
     }
 
-    async update(userId:string,data:UpdateUserDto):Promise<UserResponseDto>{
+    async update(userId:string,data:IUpdateUserDto):Promise<IUserResponseDto>{
        const user = await this.userRepository.findById(userId)
        if(!user){
         throw new UserNotFoundError("User not found");
@@ -60,7 +60,7 @@ export class UserService {
 
     }
 
-    async blockedUser(userId:string):Promise<UserResponseDto>{
+    async blockedUser(userId:string):Promise<IUserResponseDto>{
         const user = await this.userRepository.findById(userId)
         if(!user){
             throw new UserNotFoundError("User not found");
@@ -69,7 +69,7 @@ export class UserService {
         return await this.userRepository.blockUser(userId);
         }
 
-        async unBlockedUser(userId:string):Promise<UserResponseDto>{
+        async unBlockedUser(userId:string):Promise<IUserResponseDto>{
             const user = await this.userRepository.findById(userId)
             if(!user){
                 throw new UserNotFoundError("User not found");
@@ -77,4 +77,8 @@ export class UserService {
 
             return await this.userRepository.unBlockedUser(userId);
             }
+
+        async getAllUsers():Promise<IUserResponseDto[]>{
+            return await this.userRepository.getAllUsers();
+        }
 }

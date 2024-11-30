@@ -1,11 +1,11 @@
-import { CreateUserDto,UpdateUserDto,UserResponseDto } from "../dtos/user-dto";
+import { ICreateUserDto,IUpdateUserDto,IUserResponseDto } from "../dtos/user-dto";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 export class UserRepository {
 
     //repository para criar usuário
-    async create(data: CreateUserDto) : Promise<UserResponseDto> {
+    async create(data: ICreateUserDto) : Promise<IUserResponseDto> {
         const user = await prisma.user.create({
             data: {
                 name: data.name,
@@ -36,7 +36,7 @@ export class UserRepository {
         return user;
     }
 
-    async profile(userId:string): Promise<UserResponseDto> {
+    async profile(userId:string): Promise<IUserResponseDto> {
         const user = await prisma.user.findUnique({
             where: {
                 id: userId,
@@ -63,7 +63,7 @@ export class UserRepository {
         return user;
     }
 
-    async update(userId:string,data:UpdateUserDto) : Promise<UserResponseDto> {
+    async update(userId:string,data:IUpdateUserDto) : Promise<IUserResponseDto> {
         const user = await prisma.user.update({
             where: {
                 id: userId,
@@ -97,7 +97,7 @@ export class UserRepository {
        return user;
     }
 
-    async blockUser(userId:string) : Promise<UserResponseDto> {
+    async blockUser(userId:string) : Promise<IUserResponseDto> {
         const user = await prisma.user.update({
             where: {
                 id: userId,
@@ -117,7 +117,7 @@ export class UserRepository {
         return user;
     }
 
-    async unBlockedUser(userId:string) : Promise<UserResponseDto> {
+    async unBlockedUser(userId:string) : Promise<IUserResponseDto> {
         const user = await prisma.user.update({
             where: {
                 id: userId,
@@ -135,5 +135,19 @@ export class UserRepository {
         });
 
         return user;
+    }
+
+    async getAllUsers() : Promise<IUserResponseDto[]> {
+        const users = await prisma.user.findMany({
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                banner: true,
+                phoneNumber: true,
+            }
+        });
+
+        return users;
     }
 }
