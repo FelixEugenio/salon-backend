@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { Request, Response } from "express";
 import { UserController } from "../controllers/user-controller";
 import { isAuthenticated } from "../middlewares/auth-middlewares";
 import { isAdmin } from "../middlewares/isAdmin";
 import { ServiceController } from "../controllers/service-controller";
-
-const serviceController = new ServiceController();
+import { ProfessionalController } from "../controllers/professional-controller";
 
 const router = Router();
 
 const userController = new UserController();
+const serviceController = new ServiceController();
+const professionalController = new ProfessionalController();
 
 router.post("/users",userController.register);
 router.post("/login",userController.login);
@@ -24,5 +24,11 @@ router.post("/services",isAuthenticated,isAdmin,serviceController.create);
 router.get("/services/:id",isAuthenticated,serviceController.getById);
 router.put("/services/:id",isAuthenticated,isAdmin,serviceController.update);
 router.delete("/services/:id",isAuthenticated,isAdmin,serviceController.delete);
+router.get("/professionals",isAuthenticated,isAdmin,professionalController.getAll);
+router.post("/professionals",isAuthenticated,isAdmin,professionalController.create);
+router.get("/professionals/:id",isAuthenticated,professionalController.getById);
+router.put("/professionals/:id",isAuthenticated,isAdmin,professionalController.update);
+router.delete("/professionals/:id",isAuthenticated,isAdmin,professionalController.delete);
+
 
 export default router;
