@@ -31,4 +31,8 @@ export class AppointmentService {
         return await this.appointmentRepository.cancel(id);
     }
 
+    async findByScheduleAt(scheduleAt: Date): Promise<IAppointmentResponseDto[]> {
+        return await this.appointmentRepository.findByScheduleAt(scheduleAt);
+    }
+
 }

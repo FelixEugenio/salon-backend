@@ -147,4 +147,21 @@ export class AppointmentRepository {
             userEmail: appointment.user.email
         };
     }
+
+    async findByScheduleAt(scheduleAt: Date): Promise<IAppointmentResponseDto[]> {
+        const appointments = await prisma.appointment.findMany({
+            where: {
+                scheduleAt
+            },
+            select: {
+                id: true,
+                scheduleAt: true,
+                userId: true,
+                professionalId: true,
+                serviceId: true,
+                status: true
+            }
+        });
+        return appointments;
+    }
 }

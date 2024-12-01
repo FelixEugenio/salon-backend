@@ -3,12 +3,35 @@ import { Request, Response } from "express";
 import { ICreateAppointmentDto, IAppointmentResponseDto ,IAppointmentCreateAndCancelResponseDto} from "../dtos/appointment-dtos";
 import { sendCancelEmailAppointment } from "../utils/email/send-cancel-appointment";
 import { sendAppointmentConfirmationEmail } from "../utils/email/send-confirmation-mail";
+import { ConflictError } from "../utils/error/error-types";
+import { isValidDate } from "../utils/validation/is-valid-date";
 
 const appointmentService = new AppointmentService();
 export class AppointmentController {
     async create(req: Request, res: Response) {
         const data: ICreateAppointmentDto = req.body;
+
+        const scheduleAt = data.scheduleAt;
+
+        if (!isValidDate(scheduleAt)) {
+            throw new ConflictError("Data inválida ou hora inválida.");
+        }
+
+        const verifyIfAppointmentAlreadyExists = await appointmentService.findByScheduleAt(new Date(data.scheduleAt));
+
+        if (verifyIfAppointmentAlreadyExists.length > 0) {
+            throw new ConflictError("Já existe um agendamento para essa data.");
+        }
+
         const appointment: IAppointmentCreateAndCancelResponseDto = await appointmentService.create(data);
+
+        const currentDate = new Date();
+
+        const appointmentDate = new Date(appointment.scheduleAt);
+
+        if (appointmentDate <= currentDate) {
+            throw new ConflictError("A data do agendamento não pode ser menor que a data atual.");
+        }
 
         const fromattedDate = new Date(appointment.scheduleAt).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric',hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
