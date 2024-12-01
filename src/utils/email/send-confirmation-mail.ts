@@ -5,7 +5,7 @@ async function sendAppointmentConfirmationEmail(email: string, name: string,appo
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
-        subject: "Bem-vindo a nossa Plataforma!",
+        subject: "Agendamento Confirmado!",
         html: APPOINTMENT_CONFIRMATION_EMAIL_TEMPLATE(name,appointmentDate),
     };
 

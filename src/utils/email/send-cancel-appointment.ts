@@ -5,7 +5,7 @@ async function sendCancelEmailAppointment(email: string, name: string,appointmen
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
-        subject: "Bem-vindo a nossa Plataforma!",
+        subject: "Agendamento Cancelado!",
         html: CANCEL_APPOINTMENT_EMAIL_TEMPLATE(name,appointmentDate),
     };
 

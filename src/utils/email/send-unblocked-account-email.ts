@@ -5,7 +5,7 @@ async function sendUnBlockedAccountEmail(email: string, name: string) {
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
-        subject: "Bem-vindo a nossa Plataforma!",
+        subject: "Conta Desbloqueada!",
         html: UNBLOCK_USER_EMAIL_TEMPLATE(name),
     };
 
