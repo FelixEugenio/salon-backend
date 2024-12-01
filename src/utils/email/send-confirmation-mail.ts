@@ -3,7 +3,7 @@ import { APPOINTMENT_CONFIRMATION_EMAIL_TEMPLATE } from "./emailTemplate";
 
 async function sendAppointmentConfirmationEmail(email: string, name: string,appointmentDate: string) {
     const mailOptions = {
-        from: process.env.EMAIL_USER,
+        from: process.env.EMAIL_FROM,
         to: email,
         subject: "Agendamento Confirmado!",
         html: APPOINTMENT_CONFIRMATION_EMAIL_TEMPLATE(name,appointmentDate),

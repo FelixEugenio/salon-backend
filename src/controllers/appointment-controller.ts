@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import { ICreateAppointmentDto, IAppointmentResponseDto ,IAppointmentCreateAndCancelResponseDto} from "../dtos/appointment-dtos";
 import { sendCancelEmailAppointment } from "../utils/email/send-cancel-appointment";
 import { sendAppointmentConfirmationEmail } from "../utils/email/send-confirmation-mail";
-import { ap } from "@faker-js/faker/dist/airline-BLb3y-7w";
 
 const appointmentService = new AppointmentService();
 export class AppointmentController {
@@ -11,7 +10,7 @@ export class AppointmentController {
         const data: ICreateAppointmentDto = req.body;
         const appointment: IAppointmentCreateAndCancelResponseDto = await appointmentService.create(data);
 
-        const fromattedDate = new Date(appointment.scheduleAt).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        const fromattedDate = new Date(appointment.scheduleAt).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric',hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
         await sendAppointmentConfirmationEmail(appointment.userEmail, appointment.userName,fromattedDate);
         return res.status(201).json(appointment);
@@ -33,7 +32,7 @@ export class AppointmentController {
     async cancel(req: Request, res: Response) {
         const id = req.params.id;
         const appointment: IAppointmentCreateAndCancelResponseDto= await appointmentService.cancel(id);
-        const fromattedDate = new Date(appointment.scheduleAt).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        const fromattedDate = new Date(appointment.scheduleAt).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric',hour: '2-digit', minute: '2-digit', second: '2-digit' });
         await sendCancelEmailAppointment(appointment.userEmail, appointment.userName,fromattedDate);
         return res.status(200).json(appointment);
     }

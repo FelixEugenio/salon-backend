@@ -3,7 +3,7 @@ import { CANCEL_APPOINTMENT_EMAIL_TEMPLATE } from "./emailTemplate";
 
 async function sendCancelEmailAppointment(email: string, name: string,appointmentDate: string) {
     const mailOptions = {
-        from: process.env.EMAIL_USER,
+        from: process.env.EMAIL_FROM,
         to: email,
         subject: "Agendamento Cancelado!",
         html: CANCEL_APPOINTMENT_EMAIL_TEMPLATE(name,appointmentDate),

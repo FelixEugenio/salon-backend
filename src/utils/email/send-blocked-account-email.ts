@@ -3,7 +3,7 @@ import { BLOCK_USER_EMAIL_TEMPLATE, WELCOME_EMAIL_TEMPLATE } from "./emailTempla
 
 async function sendBlockedAccountEmail(email: string, name: string) {
     const mailOptions = {
-        from: process.env.EMAIL_USER,
+        from: process.env.EMAIL_FROM,
         to: email,
         subject: "Conta Bloqueada",
         html: BLOCK_USER_EMAIL_TEMPLATE(name),
