@@ -10,7 +10,6 @@ export class ProfessionalRepository {
             select: {
                 id: true,
                 name: true,
-                userId: true,
                 specialty: true,
                 available: true,
             },
@@ -27,7 +26,6 @@ export class ProfessionalRepository {
             select: {
                 id: true,
                 name: true,
-                userId: true,
                 specialty: true,
                 available: true,
             },
@@ -43,7 +41,6 @@ export class ProfessionalRepository {
             select: {
                 id: true,
                 name: true,
-                userId: true,
                 specialty: true,
                 available: true,
             },
@@ -56,7 +53,6 @@ export class ProfessionalRepository {
             select: {
                 id: true,
                 name: true,
-                userId: true,
                 specialty: true,
                 available: true,
             },
@@ -72,7 +68,6 @@ export class ProfessionalRepository {
             select: {
                 id: true,
                 name: true,
-                userId: true,
                 specialty: true,
                 available: true,
             },

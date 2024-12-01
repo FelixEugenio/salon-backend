@@ -28,10 +28,9 @@ model User{
     update_at DateTime?  @default(now())
 
     @@map("users")
-    
-    Professional Professional[]
-}
 
+    Appointment Appointment[]
+}
 
 enum Role {
   ADMIN
@@ -44,11 +43,13 @@ model Appointment {
     status AppointmentStatus
     professionalId String
     serviceId String
+    userId String
     created_at DateTime? @default(now())
     update_at DateTime?  @default(now())
 
     professional Professional @relation(fields: [professionalId],references: [id])
     service Service @relation(fields: [serviceId],references: [id])
+    user User @relation(fields: [userId],references: [id])
     @@map("appointments")
 
 }
@@ -76,13 +77,11 @@ model Service {
 model Professional{
     id String @id @default(uuid())
     name String
-    userId String @unique
     specialty String
     available Boolean @default(true)
     created_at DateTime? @default(now())
     update_at DateTime?  @default(now())
 
-     user User @relation(fields: [userId],references: [id])
     @@map("professionals")
     Appointment Appointment[]
     availability availability[]

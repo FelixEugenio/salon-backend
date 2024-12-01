@@ -27,6 +27,7 @@ CREATE TABLE "appointments" (
     "status" "AppointmentStatus" NOT NULL,
     "professionalId" TEXT NOT NULL,
     "serviceId" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "update_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
@@ -50,7 +51,6 @@ CREATE TABLE "services" (
 CREATE TABLE "professionals" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
     "specialty" TEXT NOT NULL,
     "available" BOOLEAN NOT NULL DEFAULT true,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -72,9 +72,6 @@ CREATE TABLE "availabilities" (
     CONSTRAINT "availabilities_pkey" PRIMARY KEY ("id")
 );
 
--- CreateIndex
-CREATE UNIQUE INDEX "professionals_userId_key" ON "professionals"("userId");
-
 -- AddForeignKey
 ALTER TABLE "appointments" ADD CONSTRAINT "appointments_professionalId_fkey" FOREIGN KEY ("professionalId") REFERENCES "professionals"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -82,7 +79,7 @@ ALTER TABLE "appointments" ADD CONSTRAINT "appointments_professionalId_fkey" FOR
 ALTER TABLE "appointments" ADD CONSTRAINT "appointments_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "services"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "professionals" ADD CONSTRAINT "professionals_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "appointments" ADD CONSTRAINT "appointments_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "availabilities" ADD CONSTRAINT "availabilities_professionalId_fkey" FOREIGN KEY ("professionalId") REFERENCES "professionals"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
