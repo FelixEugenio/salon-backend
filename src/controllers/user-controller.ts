@@ -43,7 +43,7 @@ export class UserController{
         const file = req.file;
 
         const userData:IUpdateUserDto = req.body;
-        
+
         if(file){
             const imageUrl = await uploadImage(file.path);
             userData.banner = imageUrl;

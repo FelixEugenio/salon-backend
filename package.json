@@ -30,6 +30,7 @@
     "nodemailer": "^6.9.16",
     "prisma": "^6.0.0",
     "salon": "file:",
+    "stripe": "^17.4.0",
     "zod": "^3.23.8"
   }
 }
