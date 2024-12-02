@@ -5,6 +5,7 @@ import { sendWelcomeEmail } from "../utils/email/send-welcome-email";
 import { sendBlockedAccountEmail } from "../utils/email/send-blocked-account-email";
 import { sendUnBlockedAccountEmail } from "../utils/email/send-unblocked-account-email";
 import { uploadUserAvatar } from "../utils/cloudinary/cloudinary";
+import { cookieConfig } from "../config/cookie-config";
 
 
 const userService = new UserService();
@@ -28,6 +29,9 @@ export class UserController{
     async login(req:Request,res:Response){
         const loginData:ILoginUserDto = req.body;
         const token = await userService.login(loginData);
+
+        res.cookie('auth_token',token,cookieConfig);
+        
         return res.status(200).json(token);
     }
 
@@ -68,5 +72,10 @@ export class UserController{
     async getAllUsers(req:Request,res:Response){
         const users = await userService.getAllUsers();
         return res.status(200).json(users);
+    }
+
+    async logout(req:Request,res:Response){
+        res.clearCookie('auth_token');
+        return res.status(200).json({message:"Logout successfully"});
     }
 }

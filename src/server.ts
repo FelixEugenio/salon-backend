@@ -8,6 +8,7 @@ import express from 'express'
 import  router  from './routes/routes';
 import { handleError } from "./utils/error/error-handle";
 import path from 'path'
+import cookie from 'cookie-parser'
 
  const app = express();
 
@@ -20,6 +21,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, "..", "views"));
 app.use('files', express.static(path.resolve(__dirname, "..", "tmp")));
 app.use('/api/v1',router);
+app.use(cookie())
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(handleError);

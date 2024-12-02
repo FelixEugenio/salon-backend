@@ -42,6 +42,7 @@ router.get("/appointments/:id",isAuthenticated,appointmentController.getOne);
 router.put("/appointments/:id",isAuthenticated,appointmentController.update);
 router.delete("/appointments/:id",isAuthenticated,appointmentController.delete);
 router.get("/appointments/cancel/:id",isAuthenticated,appointmentController.cancel);
+router.get("/users/logout",isAuthenticated,userController.logout);
 
 
 export default router;

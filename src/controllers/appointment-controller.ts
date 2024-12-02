@@ -6,6 +6,7 @@ import { sendAppointmentConfirmationEmail } from "../utils/email/send-confirmati
 import { ConflictError } from "../utils/error/error-types";
 import { isValidDate } from "../utils/validation/is-valid-date";
 
+
 const appointmentService = new AppointmentService();
 export class AppointmentController {
     async create(req: Request, res: Response) {
