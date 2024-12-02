@@ -12,7 +12,8 @@ export class ServiceRepository{
                 name: true,
                 description: true,
                 price: true,
-                duration: true
+                duration: true,
+                img:true
             }
         });
         return service;
@@ -25,7 +26,8 @@ export class ServiceRepository{
                 name: true,
                 description: true,
                 price: true,
-                duration: true
+                duration: true,
+                img:true
             }
         });
         return services;
@@ -41,7 +43,8 @@ export class ServiceRepository{
                 name: true,
                 description: true,
                 price: true,
-                duration: true
+                duration: true,
+                img:true
             }
         });
         return service;
@@ -51,6 +54,14 @@ export class ServiceRepository{
         const service = await prisma.service.delete({
             where: {
                 id
+            },
+            select: {
+                id: true,
+                name: true,
+                description: true,
+                price: true,
+                duration: true,
+                img:true
             }
         });
         return service;
@@ -67,7 +78,8 @@ export class ServiceRepository{
                 name: true,
                 description: true,
                 price: true,
-                duration: true
+                duration: true,
+                img:true
             }
         });
         return service;

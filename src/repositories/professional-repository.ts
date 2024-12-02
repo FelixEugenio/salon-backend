@@ -12,6 +12,7 @@ export class ProfessionalRepository {
                 name: true,
                 specialty: true,
                 available: true,
+                avatar:true
             },
         });
         return professional;
@@ -28,6 +29,7 @@ export class ProfessionalRepository {
                 name: true,
                 specialty: true,
                 available: true,
+                avatar:true
             },
         });
         return professional;
@@ -43,6 +45,7 @@ export class ProfessionalRepository {
                 name: true,
                 specialty: true,
                 available: true,
+                avatar:true
             },
         });
         return professional;
@@ -55,6 +58,7 @@ export class ProfessionalRepository {
                 name: true,
                 specialty: true,
                 available: true,
+                avatar:true
             },
         });
         return professionals;
@@ -70,6 +74,7 @@ export class ProfessionalRepository {
                 name: true,
                 specialty: true,
                 available: true,
+                avatar:true
             },
         });
         return professional;

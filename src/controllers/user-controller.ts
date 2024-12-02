@@ -4,8 +4,7 @@ import { ICreateUserDto, ILoginUserDto, IUpdateUserDto } from "../dtos/user-dto"
 import { sendWelcomeEmail } from "../utils/email/send-welcome-email";
 import { sendBlockedAccountEmail } from "../utils/email/send-blocked-account-email";
 import { sendUnBlockedAccountEmail } from "../utils/email/send-unblocked-account-email";
-import { createUserSchema } from "../utils/validation/user-validation";
-import { uploadImage } from "../utils/cloudinary/cloudinary";
+import { uploadUserAvatar } from "../utils/cloudinary/cloudinary";
 
 
 const userService = new UserService();
@@ -45,8 +44,8 @@ export class UserController{
         const userData:IUpdateUserDto = req.body;
 
         if(file){
-            const imageUrl = await uploadImage(file.path);
-            userData.banner = imageUrl;
+            const imageUrl = await uploadUserAvatar(file.path);
+            userData.avatar = imageUrl;
         }
         const user = await userService.update(userId,userData);
         return res.status(200).json(user);

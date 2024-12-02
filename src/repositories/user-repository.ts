@@ -11,14 +11,14 @@ export class UserRepository {
                 name: data.name,
                 email: data.email,
                 password: data.password,
-                banner: data.banner,
+                avatar: data.avatar,
                 phoneNumber: data.phoneNumber,
             },
             select: {
                 id: true,
                 name: true,
                 email: true,
-                banner: true,
+                avatar: true,
                 phoneNumber: true,
             }
         });
@@ -45,7 +45,7 @@ export class UserRepository {
                 id: true,
                 name: true,
                 email: true,
-                banner: true,
+                avatar: true,
                 phoneNumber: true,
             }
         });
@@ -72,14 +72,14 @@ export class UserRepository {
                 name: data.name,
                 email: data.email,
                 password: data.password,
-                banner: data.banner,
+                avatar: data.avatar,
                 phoneNumber: data.phoneNumber,
             },
             select: {
                 id: true,
                 name: true,
                 email: true,
-                banner: true,
+                avatar: true,
                 phoneNumber: true,
             }
         });
@@ -109,7 +109,7 @@ export class UserRepository {
                 id: true,
                 name: true,
                 email: true,
-                banner: true,
+                avatar: true,
                 phoneNumber: true,
             }
         });
@@ -129,7 +129,7 @@ export class UserRepository {
                 id: true,
                 name: true,
                 email: true,
-                banner: true,
+                avatar: true,
                 phoneNumber: true,
             }
         });
@@ -143,7 +143,7 @@ export class UserRepository {
                 id: true,
                 name: true,
                 email: true,
-                banner: true,
+                avatar: true,
                 phoneNumber: true,
             }
         });

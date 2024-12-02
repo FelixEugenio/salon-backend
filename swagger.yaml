@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: API para agendamentos de serviços
+  description: API para agendamentos de serviços
+  version: 1.0.0
+  contact:
+    name: Felix Eugenio Mavila
+    email: felixmacarenco@gmail.com
+servers:
+  - url: 'http://localhost:3000/api/v1'
+paths:
+  /appointments:
+    get:
+      summary: "Listar todos os agendamentos"
+      description: "Retorna todos os agendamentos"
+      responses:
+        '200':
+          description: "Lista de agendamentos"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    scheduleAt:
+                      type: string
+                    status:
+                      type: string
+                    userId:
+                      type: string
+  /appointments/{id}:
+    get:
+      summary: "Obter agendamento por ID"
+      description: "Retorna os detalhes de um agendamento"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "ID do agendamento"
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Detalhes do agendamento"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  scheduleAt:
+                    type: string
+                  status:
+                    type: string

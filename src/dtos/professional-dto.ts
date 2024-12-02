@@ -3,12 +3,14 @@ export interface ICreateProfessionalDto {
     name:string
     specialty:string
     available:boolean
+    avatar?:string
 }
 
 export interface IUpdateProfessionalDto {
     name?:string
     specialty?:string
     available?:boolean
+    avatar?:string
 }
 
 export interface IProfessionalResponseDto {
@@ -16,4 +18,5 @@ export interface IProfessionalResponseDto {
     name:string
     specialty:string
     available:boolean
+    avatar?:string
 }

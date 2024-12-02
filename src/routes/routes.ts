@@ -17,6 +17,7 @@ const serviceController = new ServiceController();
 const professionalController = new ProfessionalController();
 const appointmentController = new AppointmentController();
 
+
 router.post("/users",userController.register);
 router.post("/login",userController.login);
 router.get("/profile/:id",isAuthenticated,userController.profile);
@@ -26,14 +27,14 @@ router.get("/users/blocked/:id",isAdmin,isAuthenticated,userController.blockedUs
 router.get("/users/unblocked/:id",isAdmin,isAuthenticated,userController.unBlockedUser);
 router.get("/users",isAuthenticated,userController.getAllUsers);
 router.get("/services",isAuthenticated,serviceController.getAll);
-router.post("/services",isAuthenticated,serviceController.create);
+router.post("/services",isAuthenticated,upload.single('file'),serviceController.create);
 router.get("/services/:id",isAuthenticated,serviceController.getById);
-router.put("/services/:id",isAuthenticated,serviceController.update);
+router.put("/services/:id",isAuthenticated,upload.single('file'),serviceController.update);
 router.delete("/services/:id",isAuthenticated,serviceController.delete);
 router.get("/professionals",isAuthenticated,professionalController.getAll);
 router.post("/professionals",isAuthenticated,professionalController.create);
 router.get("/professionals/:id",isAuthenticated,professionalController.getById);
-router.put("/professionals/:id",isAuthenticated,professionalController.update);
+router.put("/professionals/:id",isAuthenticated,upload.single('file'),professionalController.update);
 router.delete("/professionals/:id",isAuthenticated,professionalController.delete);
 router.get("/appointments",isAuthenticated,appointmentController.getAll);
 router.post("/appointments",isAuthenticated,appointmentController.create);

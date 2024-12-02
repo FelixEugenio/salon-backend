@@ -4,6 +4,11 @@ export interface ICreateAppointmentDto {
     professionalId: string;
     serviceId: string;
     status: string;
+    userName?: string;
+    professionalName?: string;
+    serviceName?: string;
+    servicePrice?: number;
+    servieDuration?: number;
 }
 
 export interface IUpdateAppointmentDto {

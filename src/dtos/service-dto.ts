@@ -3,6 +3,7 @@ export interface ICreateServiceDto {
     description: string;
     price: number;
     duration: number;
+    img?: string;
 }
 
 export interface IUpdateServiceDto {
@@ -10,6 +11,7 @@ export interface IUpdateServiceDto {
     description?: string;
     price?: number;
     duration?: number;
+    img?: string;
 }
 
 export interface IServiceResponseDto {
@@ -18,4 +20,5 @@ export interface IServiceResponseDto {
     description: string;
     price: number;
     duration: number;
+    img?: string;
 }

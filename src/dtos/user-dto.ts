@@ -2,7 +2,7 @@ export interface ICreateUserDto {
     name: string;
     email: string;
     password: string;
-    banner?: string;
+    avatar?: string;
     phoneNumber: string;
 }
 
@@ -10,7 +10,7 @@ export interface IUpdateUserDto {
     name?: string;
     email?: string;
     password?: string;
-    banner?: string;
+    avatar?: string;
     phoneNumber?: string;
 }
 
@@ -23,7 +23,7 @@ export interface IUserResponseDto {
     id: string;
     name: string;
     email: string;
-    banner?: string;
+    avatar?: string;
     phoneNumber: string;
 }
 

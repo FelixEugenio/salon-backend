@@ -26,6 +26,17 @@ export class AppointmentRepository {
                         name: true,
                         email: true
                     }
+                },
+                professional: {
+                    select: {
+                        name: true
+                    }
+                },
+                service: {
+                    select: {
+                        name: true,
+                        price: true
+                    }
                 }
             }
         });
