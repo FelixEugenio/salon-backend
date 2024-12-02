@@ -5,6 +5,8 @@ import { sendWelcomeEmail } from "../utils/email/send-welcome-email";
 import { sendBlockedAccountEmail } from "../utils/email/send-blocked-account-email";
 import { sendUnBlockedAccountEmail } from "../utils/email/send-unblocked-account-email";
 import { createUserSchema } from "../utils/validation/user-validation";
+import { uploadImage } from "../utils/cloudinary/cloudinary";
+
 
 const userService = new UserService();
 export class UserController{
@@ -38,7 +40,14 @@ export class UserController{
 
     async update(req:Request,res:Response){
         const userId = req.params.id;
+        const file = req.file;
+
         const userData:IUpdateUserDto = req.body;
+        
+        if(file){
+            const imageUrl = await uploadImage(file.path);
+            userData.banner = imageUrl;
+        }
         const user = await userService.update(userId,userData);
         return res.status(200).json(user);
     }

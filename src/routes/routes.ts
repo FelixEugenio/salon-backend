@@ -5,9 +5,13 @@ import { isAdmin } from "../middlewares/isAdmin";
 import { ServiceController } from "../controllers/service-controller";
 import { ProfessionalController } from "../controllers/professional-controller";
 import { AppointmentController } from "../controllers/appointment-controller";
+import uploadConfig from "../config/multer-config";
+import multer from "multer";
+
 
 const router = Router();
 
+const upload = multer(uploadConfig.upload("./tmp"));
 const userController = new UserController();
 const serviceController = new ServiceController();
 const professionalController = new ProfessionalController();
@@ -17,7 +21,7 @@ router.post("/users",userController.register);
 router.post("/login",userController.login);
 router.get("/profile/:id",isAuthenticated,userController.profile);
 router.delete("/users/:id",isAuthenticated,userController.delete);
-router.put("/users/:id",isAuthenticated,userController.update);
+router.put("/users/:id",isAuthenticated,upload.single('file'),userController.update);
 router.get("/users/blocked/:id",isAdmin,isAuthenticated,userController.blockedUser);
 router.get("/users/unblocked/:id",isAdmin,isAuthenticated,userController.unBlockedUser);
 router.get("/users",isAuthenticated,userController.getAllUsers);
